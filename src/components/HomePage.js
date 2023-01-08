@@ -24,10 +24,10 @@ export const HomePage = () => {
     <Wrapper>
       {animes.data.map((anime) => {
         return (
-          <Link key={anime._id} to={`animes/id/${anime._id}`}>
+          <LinkToDetails key={anime.id} to={`animes/id/${anime.id}`}>
             <h3>{anime.title}</h3>
             <p>{anime.synopsis}</p>
-          </Link>
+          </LinkToDetails>
         )
       })}
     </Wrapper>
@@ -35,5 +35,11 @@ export const HomePage = () => {
 }
 
 const Wrapper = styled.div`
-    background-color: salmon;
+    background-color: #7d3e25;
+    margin: 0 5%;
+`
+
+const LinkToDetails = styled(Link)`
+  text-decoration: none;
+  color: #fff;
 `

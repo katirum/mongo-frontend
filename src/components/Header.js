@@ -1,7 +1,13 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export const Header = () => {
   return (
-    <p>This is header</p>
+    <Title>ANIME PLAYGROUND</Title>
   )
 }
+
+const Title = styled.h2`
+  text-align: center;
+  color: #e22140;
+`

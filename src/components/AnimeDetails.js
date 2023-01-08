@@ -1,32 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams/* , Link  */ } from 'react-router-dom';
+import styled from 'styled-components';
+import { StyledLink } from 'utils/GlobalsStyles';
 
 export const AnimeDetails = () => {
-  const [AnimeDetail, setMovieDetail] = useState([]);
-  const { _id } = useParams();
+  const [animeDetail, setAnimeDetail] = useState([]);
+  const { id } = useParams();
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch(`https://project-mongo-api-thr246hagq-lz.a.run.app/animes/id/${_id}`)
+    fetch(`https://project-mongo-api-thr246hagq-lz.a.run.app/animes/id/${id}`)
       .then((res) => res.json())
-      .then((data) => setMovieDetail(data.data))
+      .then((data) => setAnimeDetail(data.data))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false))
-  }, [_id])
+  }, [id])
 
   if (loading) {
     return <h1>loading</h1>
   }
 
   return (
-    <>
-      <Link to="/">Go back</Link>
+    <Wrapper>
+      <StyledLink to="/">Go back</StyledLink>
       <div>
-        <h3>{AnimeDetail.title}</h3>
-        <p>{AnimeDetail.synopsis}</p>
-        <p>{AnimeDetail.status}</p>
+        <h3>{animeDetail.title}</h3>
+        <p>{animeDetail.synopsis}</p>
+        <p>{animeDetail.status}</p>
       </div>
-    </>
+
+    </Wrapper>
 
   )
 }
+
+const Wrapper = styled.div`
+  background-color: #5a8854;
+`
